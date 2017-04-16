@@ -1,0 +1,24 @@
+{
+  "name": "emails-with-node",
+  "version": "1.0.0",
+  "description": "Trying out getting/sending emails with Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bigghead/emails-with-node.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bigghead/emails-with-node/issues"
+  },
+  "homepage": "https://github.com/Bigghead/emails-with-node#readme",
+  "dependencies": {
+    "imap": "^0.8.19",
+    "mail-listener2": "^0.3.1",
+    "util": "^0.10.3"
+  }
+}
