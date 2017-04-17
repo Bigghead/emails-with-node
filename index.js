@@ -4,9 +4,14 @@ const express = require('express'),
     Imap = require('imap'),
     inspect = require('util').inspect,
     Keys    = require('./keys.js'),
+    Email   = require('./emailModel.js'),
     app = express();
 
- console.log(Keys);
+
+Email.find({ sender: 'eric', subject:'jello'})
+
+mongoose.connect('mongodb://localhost/emailTest')
+
 var mailListener = new MailListener({
   username: Keys.gmailName,
   password: Keys.gmailPass,
@@ -26,7 +31,7 @@ var mailListener = new MailListener({
   attachmentOptions: { directory: "attachments/" } // specify a download directory for attachments 
 });
  
-//mailListener.start(); // start listening 
+mailListener.start(); // start listening 
  
 // stop listening 
 //mailListener.stop(); 
@@ -46,6 +51,10 @@ mailListener.on("error", function(err){
 mailListener.on("mail", function(mail, seqno, attributes){
   // do something with mail object including attachments 
   console.log("emailParsed", mail);
+  Email.create({
+    sender: mail.header.return-path,
+    content: mail.text
+  });
   // mail processing code goes here 
 });
  
